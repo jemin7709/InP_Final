@@ -3,29 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
-<link href="main.css" type="text/css" rel="stylesheet">
+<link href="initialmain.css" type="text/css" rel="stylesheet">
+<link href="createAccount.css" type="text/css" rel="stylesheet">
+
 
 </head>
 <body>
-	<!--타이틀-->
-	<div id="title">Title</div>
-	<!--메뉴바-->
-	<div id="menu">
-		<ul id="menubar">
-			<li><a>홈</a></li>
-			<li><a>로그인</a></li>
-			<li><a>회원가입</a></li>
-			<li><a>새 게임</a></li>
-			<li><a>게시판</a></li>
-			<li><a>내 정보</a></li>
-		</ul>
-	</div>
-	<!--메인페이지-->
+<br><br>
 	<div id="mainpage">
-		<div id="mainleft"></div>
+		<h2>사용할 ID와 PW, 닉네임을 입력해 주세요</h2>
+		<form id="create_Account_Form" method="post" action="">
+			<input type="text" id="ID" name="ID" placeholder="아이디"><br>
+			<input type="text" id="PW" name="PW" placeholder="비밀번호"><br>
+			<input type="text" id="NICKNAME" name="NICKNAME" placeholder="닉네임"><br> 
+			<input type="submit" value="확인">
+			<input type="reset" value="취소">
+		</form>
 	</div>
-	<form id="admin" action="">
-		<input type="submit" value="관리자">
-	</form>
 </body>
 </html>

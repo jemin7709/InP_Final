@@ -153,7 +153,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="C:\Users\박재민\Desktop\인하대학교\2학년 1학기\인터넷 프로그래밍\새 폴더\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\Users\박재민\Desktop\인하대학교\2학년 1학기\인터넷 프로그래밍\새 폴더\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\기말프로젝트" path="/기말프로젝트" reloadable="true" source="org.eclipse.jst.jee.server:기말프로젝트"/><Context docBase="C:\Users\박재민\Desktop\인하대학교\2학년 1학기\인터넷 프로그래밍\새 폴더\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\SimpleJspServletDB" path="/SimpleJspServletDB" reloadable="true" source="org.eclipse.jst.jee.server:SimpleJspServletDB"/></Host>
+      <Context docBase="C:\Users\박재민\Desktop\인하대학교\2학년 1학기\인터넷 프로그래밍\InP_Final\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\Users\박재민\Desktop\인하대학교\2학년 1학기\인터넷 프로그래밍\InP_Final\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\기말프로젝트" path="/기말프로젝트" reloadable="true" source="org.eclipse.jst.jee.server:기말프로젝트"/><Context docBase="C:\Users\박재민\Desktop\인하대학교\2학년 1학기\인터넷 프로그래밍\InP_Final\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\SimpleJspServletDB" path="/SimpleJspServletDB" reloadable="true" source="org.eclipse.jst.jee.server:SimpleJspServletDB"/></Host>
     </Engine>
   </Service>
 </Server>

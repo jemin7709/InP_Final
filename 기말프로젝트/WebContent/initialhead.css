@@ -4,9 +4,13 @@
 /*body 전체*/
 body{
 	overflow: auto;
-	min-width: 1200px
+	min-width: 1200px;
 	margin: 0 auto;
 	text-align: center;
+}
+
+body>iframe{
+	border:none;
 }
 
 /*제목 부분*/
@@ -18,6 +22,7 @@ body{
 	margin: 0 auto;
 	z-index: 0;
 }
+
 
 /*메뉴바 부분*/
 #menubar{
@@ -34,6 +39,18 @@ body{
     padding-right:60px;
 	display: inline;
 }
-#menuber>li>a{
+#menuber > li > button{
+	border: none;
 	font-size: 10;
+}
+
+
+/*메인 페이지 부분*/
+#mainpage{
+    width: 1200px;
+    height:450px;
+	padding: 50px;
+	padding-top: 60px;
+	margin: 0 auto;
+	overflow:hidden
 }
