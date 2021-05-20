@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+#create_Account_Form > input{
+	margin: 5px;
+}
+
+.button{
+	width: 75px;
+}

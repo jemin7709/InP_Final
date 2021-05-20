@@ -1,0 +1,56 @@
+@charset "UTF-8";
+
+
+/*body 전체*/
+body{
+	overflow: auto;
+	min-width: 1200px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+body>iframe{
+	border:none;
+}
+
+/*제목 부분*/
+#title {
+	width: 1200px;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	font-size: 50px;
+	margin: 0 auto;
+	z-index: 0;
+}
+
+
+/*메뉴바 부분*/
+#menubar{
+	list-style-type: none;
+	width:1200px;
+    margin: 0;
+    padding: 0;
+	text-align: center;
+	margin: 0 auto;
+}
+#menubar > li{
+	height: 20px;
+    padding-left: 65px;
+    padding-right:65px;
+	display: inline;
+}
+#menuber > li > button{
+	border: none;
+	font-size: 10;
+}
+
+
+/*메인 페이지 부분*/
+#mainpage{
+    width: 1200px;
+    height:450px;
+	padding: 50px;
+	padding-top: 60px;
+	margin: 0 auto;
+	overflow:hidden
+}

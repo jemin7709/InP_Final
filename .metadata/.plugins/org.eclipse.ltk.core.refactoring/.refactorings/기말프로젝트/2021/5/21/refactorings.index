@@ -3,3 +3,19 @@
 1621473509115	Delete element
 1621474705290	Delete element
 1621476006549	Rename resource 'initial.css'
+1621478278440	Delete element
+1621478318262	Delete element
+1621478353955	Delete element
+1621478842433	Rename resource 'createAccountcheck.jsp'
+1621478915011	Delete element
+1621479177826	Rename resource 'createAccount.jsp'
+1621479216694	Delete element
+1621479313936	Rename resource 'main(unlogin).jsp'
+1621479321974	Rename resource 'main(unlogin).css'
+1621482772133	Move 2 resources to 'main'
+1621482789771	Move 3 resources to 'creatAccount'
+1621482802096	Move 2 resources to 'board'
+1621482813019	Move 2 resources to 'initialcss'
+1621482857490	Move 'login.jsp' to 'login'
+1621483059016	Rename resource 'creatAccount'
+1621483747268	Rename resource 'mypage'

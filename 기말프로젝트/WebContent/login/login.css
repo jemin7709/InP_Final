@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+#login > input, button{
+	margin: 5px;
+}
+
+#submit{
+	width: 165px;
+}
+
+button{
+	width: 75px;
+}
+
+#mainleft{
+	float: left;
+	width: 800px;
+	height:450px;
+}
+#mainright{
+	float: right;
+	width: 350px;
+	height:450px;
+}
+
+.find{
+	padding-left: 0px;
+	width: 244px;
+}
+
+.leftsubmit{
+	margin-right: 0px;
+}
