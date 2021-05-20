@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+#admin{
+	position: absolute;
+	top: 20px;
+	left: 1300px;
+	z-index: 2;
+}
+
+
+/*메인 페이지 부분*/
+#mainpage{
+    width: 1200px;
+	padding: 50px;
+	padding-top: 60px;
+	margin: 0 auto;
+}
+#mainleft{
+	float: left;
+	width: 800px;
+	height:450px;
+	background-color: gray;
+}
+#mainright{
+	float: right;
+	width: 350px;
+	height:450px;
+	background-color: gray;
+}
+

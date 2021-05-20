@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="main.css" type="text/css" rel="stylesheet">
+
+</head>
+<body>
+	<!--타이틀-->
+	<div id="title">Title</div>
+	<!--메뉴바-->
+	<div id="menu">
+		<ul id="menubar">
+			<li><a>홈</a></li>
+			<li><a>로그인</a></li>
+			<li><a>회원가입</a></li>
+			<li><a>새 게임</a></li>
+			<li><a>게시판</a></li>
+			<li><a>내 정보</a></li>
+		</ul>
+	</div>
+	<!--메인페이지-->
+	<div id="mainpage">
+		<div id="mainleft"></div>
+		<div id="mainright"></div>
+	</div>
+	<form action="">
+		<input type="submit" value="관리자">
+	</form>
+</body>
+</html>
