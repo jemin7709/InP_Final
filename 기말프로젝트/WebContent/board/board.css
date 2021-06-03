@@ -1,5 +1,40 @@
 @charset "UTF-8";
 
 #mainpage{
-	background-color: gray;
+	height: 425px;
+	padding-top: 15px;
+	min-height: 425px;
+	overflow-y: scroll;
+	-ms-overflow-style: none;
+}
+
+#board{
+	margin-top: 0px;
+}
+
+#board, #writetable{
+	width: 1150px;
+	margin-left: auto;
+	margin-right: auto;	
+}
+
+.content{
+	width: 1150px;
+}
+#write{
+	float:right;
+	margin-right: 30px;
+	margin-top: 10px;
+}
+
+#submit{
+	margin-right:30px;
+	float:right;
+}
+
+#content{
+	width: 100%;
+}
+#mainpage::-webkit-scrollbar { 
+	display: none; 
 }

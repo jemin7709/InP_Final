@@ -9,7 +9,7 @@
 <link href="login.css" type="text/css" rel="stylesheet">
 </head>
 <body>
-	<div id="mainpage">
+	<div id="mainpage" style="background-color: #90c695;">
 		<div id="mainleft">
 			<br><br><br><br>
 			<h2>찾을 ID의 PW를 입력해주세요</h2>

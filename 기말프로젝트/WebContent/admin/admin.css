@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+#mainpage{
+	height: 425px;
+	padding-top: 15px;
+	min-height: 425px;
+	overflow-y: scroll;
+	-ms-overflow-style: none;
+}
+
+#mainpage::-webkit-scrollbar { 
+	display: none; 
+}
+
+
+#userboard, #textboard, #writetable{
+	width: 1150px;
+	margin-top: 0px;
+	margin-left: auto;
+	margin-right: auto;	
+}
+#mypage{
+	width: 1150px;
+	margin-left: auto;
+	margin-right: auto;
+}

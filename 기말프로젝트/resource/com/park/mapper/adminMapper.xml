@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.park.mapper.adminMapper">
+	<select id="getUserIndex" resultType="int">
+		SELECT MAX(no) FROM user
+	</select>
+	
+	<select id="getUserList" parameterType="int" resultType="user.UserDTO">
+		SELECT * FROM user <![CDATA[WHERE no < #{indexNum}]]> ORDER BY no DESC LIMIT 12
+	</select>
+	
+	<select id="nextUserPage" parameterType="int" resultType="user.UserDTO">
+		SELECT * FROM user <![CDATA[WHERE no < #{no}]]>
+	</select>
+	
+	<update id="updateAccount" parameterType="user.UserDTO">
+		UPDATE user SET userID = #{userID}, userPW = #{userPW}, userName = #{userName}, point = #{point} WHERE userID = #{userID}
+	</update>
+</mapper>

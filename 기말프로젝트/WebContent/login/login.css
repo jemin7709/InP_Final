@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+#divlogin{
+	padding-top: 80px;
+}
+
 #login > input, button{
 	margin: 5px;
 }
@@ -12,6 +16,9 @@ button{
 	width: 75px;
 }
 
+#mainpage{
+	height: 450px;
+}
 #mainleft{
 	float: left;
 	width: 800px;

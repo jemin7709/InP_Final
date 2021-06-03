@@ -9,6 +9,30 @@
 <link href="main.css" type="text/css" rel="stylesheet">
 </head>
 <body>
+<%
+String title = request.getParameter("title");
+%>
+	<script src="http://code.jquery.com/jquery-latest.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	$.ajax({
+		url : "../Game/newGame.jsp", // a.jsp 에서 받아옴
+		dataType: "json",
+		success : function(data) {
+			
+			if(data.length>0){
+				var tb = $("<table/>");
+				for(var i in data){
+					var $title = data[i].title;
+					var row = $("<tr/>").append($("<td/>").text($title));
+					tb.append(row);
+				}
+				$("#mainleft").append(tb);
+			}
+		}
+	})
+
+
+	</script>
 	<div id="mainpage">
 		<div id="mainleft"></div>
 		<div id="mainright"></div>

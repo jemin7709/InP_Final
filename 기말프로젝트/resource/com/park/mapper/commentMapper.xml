@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.park.mapper.commentMapper">
+	<select id="getCommentIndex" parameterType="int" resultType="int">
+		SELECT COUNT(*) FROM comment WHERE boardID = #{boardID}
+	</select>
+	
+	<select id="getCommentList" parameterType="int" resultType="com.park.comment.CommentDTO">
+		SELECT * FROM comment WHERE boardID = #{boardID} ORDER BY no ASC
+	</select>
+	
+	<select id="getCommentDate" resultType="String">
+		SELECT now()
+	</select>
+	
+	<insert id="writeComment" parameterType="com.park.comment.CommentDTO">
+		INSERT INTO comment(boardID, userID, content, date) VALUES(#{boardID}, #{userID}, #{content}, #{date})
+	</insert>
+	
+	<delete id="deleteComment" parameterType="int">
+		DELETE FROM comment WHERE no = #{no}
+	</delete>
+	
+	<delete id="deleteAllComment" parameterType="int">
+		DELETE FROM comment WHERE boardID = #{boardID}
+	</delete>
+	
+	<update id="updateComment" parameterType="com.park.comment.CommentDTO">
+		UPDATE comment SET content = #{content} WHERE no = #{no}
+	</update>
+</mapper>

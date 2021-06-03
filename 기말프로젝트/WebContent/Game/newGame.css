@@ -1,0 +1,48 @@
+@charset "UTF-8";
+
+#title{
+	margin-bottom: 30px;
+	font-size: 30px;
+	text-align: center;
+}
+
+#paint_Body{
+	margin: 0px;
+}
+
+button{
+	margin: 5px;
+}
+
+#mainleft{
+	float: left;
+	width: 800px;
+	height:450px;
+	z-index: 0;
+}
+#mainright{
+	float: right;
+	width: 350px;
+	height:450px;
+}
+
+#upload{
+	width: 120px;
+}
+
+#lefttop{
+	height: 40px;
+}
+
+#canvas{
+	margin: 0px;
+	z-index: 1;
+}
+
+#options{
+	width:800px;
+	height:15px;
+	margin: 0px;
+	margin-left: 30px;
+	align-items: center;
+}

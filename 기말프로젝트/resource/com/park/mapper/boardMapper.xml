@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.park.mapper.boardMapper">
+	<select id="getBoardList" parameterType="int" resultType="board.BoardDTO">
+		SELECT * FROM board <![CDATA[WHERE boardID < #{indexNum}]]> ORDER BY boardID DESC LIMIT 12
+	</select>
+	
+	<select id="getDate" resultType="String">
+		SELECT now()
+	</select>
+	
+	<select id="getBoard" parameterType="int" resultType="board.BoardDTO">
+		SELECT * FROM board WHERE boardID = #{boardID}
+	</select>
+	
+	<insert id="wirte" parameterType="board.BoardDTO">
+		INSERT INTO board VALUES(#{boardID}, #{boardTitle}, #{userID}, #{boardDate}, #{boardContent}, #{viewCount})
+	</insert>
+	
+	<update id="updateBoard" parameterType="board.BoardDTO">
+		UPDATE board SET boardTitle = #{boardTitle}, boardContent = #{boardContent} WHERE boardID = #{boardID}
+	</update>
+	
+	<delete id="deleteBoard" parameterType="int">
+		DELETE FROM board WHERE boardID = #{boradID}
+	</delete>
+	
+	<select id="getIndex" resultType="int">
+		SELECT MAX(boardID) FROM board
+	</select>
+	
+	<select id="getViewCount" resultType="int">
+		SELECT viewCount FROM board WHERE boardID = #{boradID}
+	</select>
+	
+	<update id="upViewCount" parameterType="int">
+		UPDATE board SET viewCount=viewCount+1 WHERE boardID=#{boardID}
+	</update>
+	
+	<select id="nextPage" parameterType="int" resultType="board.BoardDTO">
+		SELECT * FROM board <![CDATA[WHERE boardID < #{boardID}]]>
+	</select>
+	
+</mapper>
