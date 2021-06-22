@@ -20,7 +20,7 @@ if(session.getAttribute("id")!=null){
 		}
 	</script>
 	<!--타이틀-->
-	<div id="title">Title</div>
+	<div id="title" style="font-size: 55px;color: white;font-family: fantasy ">Car Chase</div>
 	<!--메뉴바-->
 	<div id="menu">
 		<ul id="menubar">

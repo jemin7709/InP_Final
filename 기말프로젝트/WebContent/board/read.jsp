@@ -24,7 +24,7 @@ if(session.getAttribute("id")!=null){
 
 int boardID = 0;
 if(request.getParameter("boardID")!=null){
-	boardID =Integer.parseInt(request.getParameter("boardID"));
+	boardID = Integer.parseInt(request.getParameter("boardID"));
 }
 if(boardID==0){
 	PrintWriter ot = response.getWriter();
@@ -46,24 +46,29 @@ BoardDTO b = new BoardDAO().getBoard(boardID);
 	<div id="mainpage">
 	<form action="commentAction.jsp?boardID=<%=boardID %>" method="post">
 	<table id="writetable" style="text-align: center; border: 1px solid #dddddd">
+		<thead>
+			<tr>
+				<th colspan="10" style="background-color: #eeeeee; text-align: center;"><%=b.getBoardTitle() %></th>
+			</tr>
+		</thead>
 		<tbody>
 			<tr>
-			<td>글 제목</td>
-			<td colspan="3"><%=b.getBoardTitle() %></td>
+				<td colspan="9">&nbsp;</td>
+				<td colspan="1"><%=b.getBoardDate().substring(0,10) %></td>
+				
 			</tr>
 			<tr>
-			<td>작성자</td>
-			<td colspan="3"><%=b.getUserID() %></td>
+				<td colspan="9">&nbsp;</td>
+				<td colspan="1"><%=b.getUserID() %></td>
 			</tr>
 			<tr>
-			<td>작성일</td>
-			<td colspan="3"><%=b.getBoardDate().substring(0,10) %></td>
 			</tr>
 			<tr>
-			<td>본문</td>
-			<td colspan="3"><%=b.getBoardContent() %></td>
+				<td colspan="10"><%=b.getBoardContent() %></td>
 			</tr>
 			<tr>
+			</tr>
+			<tr style="border: 1px solid black">
 			<%	
 				CommentDAO commentdao = new CommentDAO();
 				List<CommentDTO> commentlist = commentdao.getCommentList(boardID);
@@ -72,30 +77,36 @@ BoardDTO b = new BoardDAO().getBoard(boardID);
 					<c:forEach var="elem" items="${commentlist}" varStatus="status">
 					<c:set var="ID" value="${elem.getUserID()}"/>
 					<tr>
-						<td>${elem.getUserID()}</td>
-						<td>${elem.getContent()}</td>
-						<td>${elem.getDate().substring(0,10)}</td>
+						<td colspan="2">${elem.getUserID()}</td>
 						<%
-						if(id!=null && id.equals(pageContext.getAttribute("ID"))){
+						if(id!=null &&(id.equals(pageContext.getAttribute("ID"))||id.equals("ADMIN"))){
 						%>
-						<td><button type="button" onclick="if(confirm('삭제하시겠습니까?')){location.href='commentDeleteAction.jsp?no=${elem.getNo()}';}">삭제</button>
+						<td colspan="8"><button type="button" onclick="if(confirm('삭제하시겠습니까?')){location.href='commentDeleteAction.jsp?no=${elem.getNo()}';}">삭제</button>
 						<button type="button" onclick="openEdit('${elem.getNo()}', '${elem.getContent()}')">수정</button></td>
 						<%
 						}
 						%>
 					</tr>
+					<tr>
+						<td colspan="7">${elem.getContent()}</td>
+						<td colspan="3">${elem.getDate().substring(0,10)}</td>
+					</tr>
 					</c:forEach>
-			</tr>
-			<tr>
-			<td colspan="2"><input type="text" id="content" name="content"></td>
-			<td><input type="submit" id="submit" value="댓글 작성"></td>
 			</tr>
 		</tbody>
 	</table>
+	<%
+	if(id!=null || id.equals("ADMIN")){
+	%>
+	<input type="text" id="content" name="content">
+	<input type="submit" id="submit" value="댓글 작성">
+	<%
+	}
+	%>
 	</form>
 	<button onclick="location.href = 'board.jsp'">목록으로</button>
 	<%
-	if(id!=null&&id.equals(b.getUserID())){
+	if(id!=null&&(id.equals(b.getUserID())||id.equals("ADMIN"))){
 	%>
 	<button onclick="location.href='updateBoard.jsp?boardID=<%=boardID%>'">수정</button>
 	<button onclick="if(confirm('삭제하시겠습니까?')){location.href='deleteBoardAction.jsp?boardID=<%=boardID%>';}">삭제</button>

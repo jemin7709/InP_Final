@@ -1,133 +1,208 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>그림판</title>
-    <link href="newGame.css" type="text/css" rel="stylesheet">
-    <style type="text/css">
-    	body{
-    		margin: 0px;
-    		align-items: center;
-    		width: 800px;
-    		height: 400px;
-    	}
-    </style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<style>
+canvas {
+    border:1px solid #d3d3d3;
+    background-color: #f1f1f1;
+}
+</style>
 </head>
-<body>
-    <canvas id="canvas" width="800px" height="370px"></canvas>
-    <div id="options">
-        <select id="type">
-            <option value="stroke">실선</option>
-            <option value="eraser">지우개</option>
-        </select>
-        <select id="strokeStyle">
-            <option value="blue">파란색</option>
-            <option value="red">빨간색</option>
-            <option value="pink">분홍색</option>
-            <option value="orange">주황색</option>
-        </select>
-        <select id="lineWidth">
-            <option value="5">5px</option>
-            <option value="10">10px</option>
-            <option value="15">15px</option>
-            <option value="20">20px</option>
-        </select>
-    </div>
-    <script>
-        let isAbleDraw = false;
-        const options = {
-            type: 'stroke',
-            strokeStyle: 'blue',
-            lineWidth: 5,
-        };
-        const rects = [];
-        let currentRect = null;
-        document.getElementById('canvas').addEventListener('mousedown', () => {
-            isAbleDraw = true;
-            currentRect = {
-                type: options.type,
-                strokeStyle: options.strokeStyle,
-                lineWidth: options.lineWidth,
-                coordinates: [],
-            };
-        });
-        document.getElementById('canvas').addEventListener('mousemove', (e) => {
-            if (isAbleDraw) {
-                const ctx = e.target.getContext('2d');
-                const [x, y] = [e.offsetX, e.offsetY];
-                currentRect.coordinates.push([x, y]);
-                drawTools.clear();
-                drawTools.execute(rects);
-                if (currentRect.type === 'stroke') drawTools.stroke(currentRect.coordinates, 'rgba(255, 255, 0, .3)', currentRect.lineWidth);
-                if (currentRect.type === 'eraser') drawTools.eraser(currentRect.coordinates, currentRect.lineWidth);
-            }
-        });
-        document.getElementById('canvas').addEventListener('mouseup', () => {
-            isAbleDraw = false;
-            rects.push(currentRect);
-            drawTools.clear();
-            currentRect = null;
-            drawTools.execute(rects);
-            console.log(rects);
-        })
+<body onload="startGame()">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+var myGamePiece;
+var myObstacles = [];
+var myScore;
+var startTime = new Date();
+var speedX = 0;
+var frequency = 100;
 
-        const drawTools = {
-            clear() {
-            	// 캔버스 내용 제거
-                const canvas = document.getElementById('canvas');
-                const ctx = canvas.getContext('2d');
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-            },
-            stroke(coordinates, color, lineWidth) {
-            	// 마우스가 이동한 경로를 따라 실선 그리기
-                if (coordinates.length > 0) {
-                    const ctx = document.getElementById('canvas').getContext('2d');
-                    const firstCoordinate = coordinates[0];
-                    ctx.beginPath();
-                    ctx.moveTo(firstCoordinate[0], firstCoordinate[1]);
-                    for (let i = 1; i < coordinates.length; i += 1) {
-                        ctx.lineTo(coordinates[i][0], coordinates[i][1]);
-                    }
-                    ctx.strokeStyle = color;
-                    ctx.lineWidth = lineWidth;
-                    ctx.stroke();
-                    ctx.closePath();
-                }
-            },
-            eraser(coordinates, lineWidth) {
-            	// 마우스가 이동한 좌표에 따라 하얀색으로 원을 그려서 지우개 기능처럼 동작
-                const canvas = document.getElementById('canvas');
-                const ctx = canvas.getContext('2d');
-                for (let i = 0; i < coordinates.length; i += 1) {
-                    ctx.beginPath();
-                    const coordinate = coordinates[i];
-                    const [x, y] = coordinate;
-                    ctx.fillStyle = 'white';
-                    ctx.arc(x, y, lineWidth / 2, 0, Math.PI * 2);
-                    ctx.fill();
-                    ctx.closePath();
-                }
-            },
-            execute(rects) {
-            	// rects 배열에 저장 된 도형을 기준으로 다시 캔버스에 그림
-                for (let i = 0; i < rects.length;  i += 1) {
-                    const rect = rects[i];
-                    const { type } = rect;
-                    if (type === 'stroke') this.stroke(rect.coordinates, rect.strokeStyle, rect.lineWidth);
-                    if (type === 'eraser') this.eraser(rect.coordinates, rect.lineWidth);
-                }
-            },
-        };
-        document.getElementById('type').addEventListener('change', (e) => {
-            options.type = e.target.value;
-        });
-        document.getElementById('strokeStyle').addEventListener('change', (e) => {
-            options.strokeStyle = e.target.value;
-        });
-        document.getElementById('lineWidth').addEventListener('change', (e) => {
-            options.lineWidth = e.target.value;
-        });
-    </script>
+function startGame() {
+    myGamePiece = new component(40, 40, "img/car_top.png", 10, 120, "image");
+    myScore = new component("30px", "Consolas", "white", 280, 40, "text");
+    myGameArea.start();
+}
+
+var myGameArea = {
+    canvas : document.createElement("canvas"),
+    start : function() {
+        this.canvas.width = 800;
+        this.canvas.height = 450;
+        this.context = this.canvas.getContext("2d");
+        var img = new Image();
+        img.src = "img/road.jpg";
+        var ptn = this.context.createPattern(img, 'repeat-y');
+        this.context.rect(0, 0, 800, 450);
+        this.context.fillStyle = ptn;
+        this.context.fill();
+        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+        this.frameNo = 0;
+        this.interval = setInterval(updateGameArea, 20);
+        window.addEventListener('keydown', function (e) {
+            myGameArea.keys = (myGameArea.keys || []);
+            myGameArea.keys[e.keyCode] = (e.type == "keydown");
+        })
+        window.addEventListener('keyup', function (e) {
+            myGameArea.keys[e.keyCode] = (e.type == "keydown");            
+        })
+        },
+    clear : function() {
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        var img = new Image();
+        img.src = "img/road.jpg";
+        var ptn = this.context.createPattern(img, 'repeat-y');
+        this.context.rect(0, 0, 800, 450);
+        this.context.fillStyle = ptn;
+        this.context.fill();
+    },
+    stop : function() {
+        clearInterval(this.interval);
+    }
+}
+
+function component(width, height, color, x, y, type) {
+    this.type = type;
+    if(type == "image"){
+    	this.image = new Image();
+    	this.image.src = color;
+    }
+    this.width = width;
+    this.height = height;
+    this.speedX = 0;
+    this.speedY = 0;    
+    this.x = x;
+    this.y = y;    
+    this.update = function() {
+        ctx = myGameArea.context;
+        if (this.type == "text") {
+            ctx.font = this.width + " " + this.height;
+            ctx.fillStyle = color;
+            ctx.fillText(this.text, this.x, this.y);
+        }
+        else if (type == "image") {
+        	ctx.drawImage(this.image, 
+            this.x, this.y, this.width, this.height);
+        }
+        else {
+            ctx.fillStyle = color;
+            ctx.fillRect(this.x, this.y, this.width, this.height);
+        }
+    }
+    this.newPos = function() {
+        this.x += this.speedX;
+        this.y += this.speedY;        
+    }
+    this.crashWith = function(otherobj) {
+        var myleft = this.x;
+        var myright = this.x + (this.width);
+        var mytop = this.y + 20;
+        var mybottom = this.y + (this.height) - 20;
+        var otherleft = otherobj.x;
+        var otherright = otherobj.x + (otherobj.width);
+        var othertop = otherobj.y;
+        var otherbottom = otherobj.y + (otherobj.height);
+        var crash = true;
+        if ((mybottom < othertop) || (mytop > otherbottom) || (myright < otherleft) || (myleft > otherright)) {
+            crash = false;
+        }
+        return crash;
+    }
+}
+
+function updateGameArea() {
+    var x, height, gap, minHeight, maxHeight, minGap, maxGap;
+    var curTime = new Date();
+    for (i = 0; i < myObstacles.length; i += 1) {
+        if (myGamePiece.crashWith(myObstacles[i])) {
+            myGameArea.stop();
+            var stopTime = new Date();
+            var time = (stopTime.getTime() - startTime.getTime())/1000;
+            location.href = "newGame.jsp?score="+parseInt((myGameArea.frameNo/30));
+            return;
+        } 
+    }
+    myGameArea.clear();
+    myGamePiece.speedX = 0;
+    myGamePiece.speedY = 0;    
+    if (myGameArea.keys && myGameArea.keys[37]) {myGamePiece.speedX = -2; }
+    if (myGameArea.keys && myGameArea.keys[39]) {myGamePiece.speedX = 2; }
+    if (myGameArea.keys && myGameArea.keys[38]) {myGamePiece.speedY = -2; }
+    if (myGameArea.keys && myGameArea.keys[40]) {myGamePiece.speedY = 2; }
+    myGamePiece.newPos();
+    myGamePiece.update();
+    myGameArea.frameNo += 1;
+    
+	if(80 < time){
+		frequency = 10;
+	}
+	else if(60 < time){
+		frequency = 30;
+	}
+	else if(40 < time){
+		frequency = 70;
+	}
+	else if(20 < time){
+    	frequency = 120;
+	}
+	else{
+		frequency = 150;
+	}
+    if (myGameArea.frameNo == 1 || everyinterval(frequency)) {
+        x = myGameArea.canvas.width;
+        minHeight = 0;
+        maxHeight = 400;
+        
+        minGap = 50;
+        if(80 < time){
+        	maxGap = 100;
+    	}
+    	else if(40 < time){
+    		maxGap = 125;
+    	}
+    	else{
+    		maxGap = 150;
+    	}
+        gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
+        var count = Math.floor(Math.random()*5+1);
+        for(var i=0;i<count;i++){
+        	height = Math.floor(Math.random()*(maxHeight-minHeight+1)+minHeight);
+        	myObstacles.push(new component(90, 50, "img/bus_top2.png", x, height, "image"));
+        }
+    }
+    for (i = 0; i < myObstacles.length; i += 1) {
+    	var time = parseInt((curTime.getTime() - startTime.getTime())/1000);
+    	if(80 < time){
+    		myObstacles[i].speedX = -11;
+    	}
+    	else if(60 < time){
+    		myObstacles[i].speedX = -9;
+    	}
+    	else if(40 < time){
+    		myObstacles[i].speedX = -7;
+    	}
+    	else if(20 < time){
+    		myObstacles[i].speedX = -5;
+    	}
+    	else{
+    		myObstacles[i].speedX = -3;
+    	}
+        myObstacles[i].newPos();
+        myObstacles[i].update();
+    }
+    myScore.text="SCORE: " + parseInt((myGameArea.frameNo/30));
+    myScore.update();
+}
+
+function everyinterval(n) {
+    if ((myGameArea.frameNo / n) % 1 == 0) {return true;}
+    return false;
+}
+function clearmove() {
+    myGamePiece.speedX = 0; 
+    myGamePiece.speedY = 0; 
+}
+</script>
 </body>
 </html>

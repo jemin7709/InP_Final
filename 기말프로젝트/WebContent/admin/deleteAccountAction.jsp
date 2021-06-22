@@ -13,6 +13,7 @@
 <body>
 <%
 String id = null;
+String delid = request.getParameter("delid");
 if(session.getAttribute("id")!=null){
 	id = (String)session.getAttribute("id");
 }
@@ -24,8 +25,7 @@ if(id==null){
 	ot.println("</script>");
 }
 
-UserDTO user = new UserDAO().getUser(id);
-if(!id.equals(user.getId())||!id.equals("ADMIN")){
+if(id!=null && !id.equals("ADMIN")){
 	PrintWriter ot = response.getWriter();
 	ot.println("<script>");
 	ot.println("alert('본인만 삭제가 가능합니다')");
@@ -34,7 +34,8 @@ if(!id.equals(user.getId())||!id.equals("ADMIN")){
 }
 else{
 	UserDAO userdao = new UserDAO();
-	int result = userdao.deleteAccount(id);
+	int result = userdao.deleteAccount(delid);
+	System.out.println(delid);
 	if(result == -1){
 		PrintWriter ot = response.getWriter();
 		ot.println("<script>");
@@ -48,7 +49,6 @@ else{
 		ot.println("location.href='../main/main.jsp'");
 		ot.println("parent.document.location.reload();");
 		ot.println("</script>");
-		session.invalidate();
 	}
 }
 %>

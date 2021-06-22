@@ -44,7 +44,7 @@ request.getParameter("id").equals("")||request.getParameter("name").equals("")||
 }
 else{
 	UserDAO userdao = new UserDAO();
-	int result = userdao.updateAccount(user);
+	int result = userdao.updateAdminAccount(user);
 	if(result == -1){
 		PrintWriter ot = response.getWriter();
 		ot.println("<script>");

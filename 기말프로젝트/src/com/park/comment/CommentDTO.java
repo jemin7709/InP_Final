@@ -5,6 +5,7 @@ public class CommentDTO {
 	int boardID;
 	String userID;
 	String content;
+	String date;
 
 	public int getNo() {
 		return no;
@@ -36,5 +37,4 @@ public class CommentDTO {
 	public void setDate(String date) {
 		this.date = date;
 	}
-	String date;
 }

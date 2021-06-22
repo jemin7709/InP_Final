@@ -10,6 +10,8 @@
 	margin: 0px;
 }
 
+
+
 button{
 	margin: 5px;
 }
@@ -20,6 +22,14 @@ button{
 	height:450px;
 	z-index: 0;
 }
+
+#leftmain{
+	float: left;
+	width: 800px;
+	height:450px;
+	z-index: 0;
+}
+
 #mainright{
 	float: right;
 	width: 350px;
@@ -45,4 +55,12 @@ button{
 	margin: 0px;
 	margin-left: 30px;
 	align-items: center;
+}
+
+#pointlist{
+	width: 330px;
+	max-height: 450px;
+	margin-left: auto;
+	margin-right: auto;	
+	margin-top: 60px;
 }

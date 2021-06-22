@@ -36,7 +36,6 @@ request.getParameter("id").equals("")||request.getParameter("name").equals("")||
 }
 else{
 	UserDAO userdao = new UserDAO();
-	System.out.println(user.getId().getClass().getName());
 	int result = userdao.updateAccount(user);
 	if(result == -1){
 		PrintWriter ot = response.getWriter();

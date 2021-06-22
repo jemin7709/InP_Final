@@ -15,8 +15,4 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="nextUserPage" parameterType="int" resultType="user.UserDTO">
 		SELECT * FROM user <![CDATA[WHERE no < #{no}]]>
 	</select>
-	
-	<update id="updateAccount" parameterType="user.UserDTO">
-		UPDATE user SET userID = #{userID}, userPW = #{userPW}, userName = #{userName}, point = #{point} WHERE userID = #{userID}
-	</update>
 </mapper>

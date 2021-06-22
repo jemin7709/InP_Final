@@ -21,10 +21,12 @@
 <fullyQualifiedTypeName name="board.BoardDTO"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="com.park.admin.AdminDAO"/>
-<fullyQualifiedTypeName name="user.UserDTO"/>
 <fullyQualifiedTypeName name="com.park.comment.CommentDAO"/>
-<fullyQualifiedTypeName name="java.lang.Integer"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
-<fullyQualifiedTypeName name="java.util.HashMap"/>
 <fullyQualifiedTypeName name="com.park.comment.CommentDTO"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="java.lang.Integer"/>
+<fullyQualifiedTypeName name="user.UserDTO"/>
+<fullyQualifiedTypeName name="com.park.chat.ChatDAO"/>
+<fullyQualifiedTypeName name="com.park.chat.ChatDTO"/>
 </qualifiedTypeNameHistroy>

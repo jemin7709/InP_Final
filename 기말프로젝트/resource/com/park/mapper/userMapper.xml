@@ -7,18 +7,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="create_account" parameterType="user.UserDTO">
 		INSERT INTO user(userID, userPW, userName) VALUES(#{userID}, #{userPW}, #{userName})
 	</insert>
+	
 	<select id="login" parameterType="String" resultType="String">
 		SELECT userPW FROM user WHERE userID = #{userID}
 	</select>
+	
 	<select id="getUser" parameterType="String" resultType="user.UserDTO">
 		SELECT * FROM user WHERE userID = #{userID}
 	</select>
 	
+	<select id="getPwUser" parameterType="String" resultType="user.UserDTO">
+		SELECT * FROM user WHERE userPW = #{userPW}
+	</select>
+	
 	<update id="updateAccount" parameterType="user.UserDTO">
+		UPDATE user SET userID = #{userID}, userPW = #{userPW}, userName = #{userName} WHERE userID = #{userID}
+	</update>
+	
+	<update id="updateAdminAccount" parameterType="user.UserDTO">
 		UPDATE user SET userID = #{userID}, userPW = #{userPW}, userName = #{userName}, point = #{point} WHERE userID = #{userID}
 	</update>
 	
 	<delete id="deleteAccount" parameterType="String">
 		DELETE FROM user WHERE userID = #{userID}
 	</delete>
+	
+	<update id="updateScore" parameterType="user.UserDTO">
+		UPDATE user SET point = point + #{point} WHERE userID = #{userID}
+	</update>
+	
+	<select id="getPointList" resultType="user.UserDTO">
+		SELECT * FROM user ORDER BY point DESC LIMIT 10
+	</select>
 </mapper>

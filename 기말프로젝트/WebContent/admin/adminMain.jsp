@@ -33,8 +33,9 @@ if(!id.equals("ADMIN")){
 }
 %>
 	<div id="mainpage">
+	<br><br><br><br><br><br>
 		<button type="button" onclick="location.href = 'accountManager.jsp'">회원 관리</button>
-		<button type="button" onclick="location.href='boardManager.jsp'">게시판 관리</button>
+		<button type="button" onclick="location.href='../board/board.jsp'">게시판 관리</button>
 	</div>
 </body>
 </html>

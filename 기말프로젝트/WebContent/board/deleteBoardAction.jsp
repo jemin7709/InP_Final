@@ -38,7 +38,7 @@ if(boardID==0){
 }
 
 BoardDTO b = new BoardDAO().getBoard(boardID);
-if(!id.equals(b.getUserID())){
+if(!id.equals("ADMIN")&&!id.equals(b.getUserID())){
 	PrintWriter ot = response.getWriter();
 	ot.println("<script>");
 	ot.println("alert('본인만 삭제가 가능합니다')");

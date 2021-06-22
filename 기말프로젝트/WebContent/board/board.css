@@ -7,17 +7,18 @@
 	overflow-y: scroll;
 	-ms-overflow-style: none;
 }
-
 #board{
 	margin-top: 0px;
 }
-
 #board, #writetable{
 	width: 1150px;
 	margin-left: auto;
 	margin-right: auto;	
 }
-
+#writeable{
+	border-collapse: separate;
+	border-spacing: 0 20px;
+}
 .content{
 	width: 1150px;
 }
@@ -28,13 +29,18 @@
 }
 
 #submit{
-	margin-right:30px;
+	margin-right:60px;
 	float:right;
+	margin-top: 10px;
 }
 
 #content{
-	width: 100%;
+	width: 900px;
+	margin: 10px;
 }
 #mainpage::-webkit-scrollbar { 
 	display: none; 
+}
+#next, #prev{
+	margin: 10px;
 }

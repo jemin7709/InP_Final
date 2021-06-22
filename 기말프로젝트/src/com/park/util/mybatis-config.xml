@@ -21,6 +21,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         <mapper resource="com/park/mapper/boardMapper.xml"/>
         <mapper resource="com/park/mapper/adminMapper.xml"/>
         <mapper resource="com/park/mapper/commentMapper.xml"/>
+        <mapper resource="com/park/mapper/chatMapper.xml"/>
     </mappers>
 
 

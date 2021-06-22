@@ -70,9 +70,9 @@ pageContext.setAttribute("u", u);
 			</tr>
 		</tbody>
 	</table>
-	<button type="button" onclick="location.href = '../main/main.jsp'">뒤로가기</button>
+	<button type="button" onclick="location.href = 'accountManager.jsp'">뒤로가기</button>
 	<button onclick="location.href = 'updateAccountAction.jsp'">정보 수정</button>
-	<button type="button" onclick="if(confirm('삭제하시겠습니까?')){location.href='deleteAccountAction.jsp'}">회원 삭제</button>
+	<button type="button" onclick="if(confirm('삭제하시겠습니까?')){location.href='deleteAccountAction.jsp?delid=' + '${u.getId()}'}">회원 삭제</button>
 	</form>
 
 	</div>

@@ -1,5 +1,7 @@
 package user;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.park.util.DBUtil;
@@ -73,6 +75,54 @@ public class UserDAO {
 		int res = -1;
 		try {
 			res = sqlSession.delete("deleteAccount", userID);
+			sqlSession.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+	
+	//점수 업데이트
+	public void updateScore(int score, String userID) {
+		try {
+			UserDTO user = new UserDTO();
+			user.setId(userID);
+			user.setPoint(score);
+			sqlSession.update("updateScore", user);
+			sqlSession.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public List<UserDTO> getPointList(){
+		try {
+			int indexNum = 10;
+			List<UserDTO> list = sqlSession.selectList("getPointList", indexNum);
+			sqlSession.commit();
+			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public UserDTO getPwUser(String pw) {
+		try {
+			UserDTO user = sqlSession.selectOne("getPwUser", pw);
+			sqlSession.commit();
+			return user;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public int updateAdminAccount(UserDTO user) {
+		int res= -1;
+		try {
+			res = sqlSession.update("updateAdminAccount", user);
 			sqlSession.commit();
 		} catch (Exception e) {
 			e.printStackTrace();

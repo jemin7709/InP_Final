@@ -1,13 +1,10 @@
 package com.park.comment;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
 import com.park.util.DBUtil;
-
-import user.UserDTO;
 
 public class CommentDAO {
 	private SqlSession sqlSession;

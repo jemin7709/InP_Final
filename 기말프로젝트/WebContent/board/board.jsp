@@ -20,6 +20,10 @@ int pageNum = 1;
 if(request.getParameter("pageNum")!=null){
 	pageNum = Integer.parseInt(request.getParameter("pageNum"));
 }
+String id = null;
+if(session.getAttribute("id")!=null){
+	id = (String)session.getAttribute("id");
+}
 %>
 	<div id="mainpage">
 		<table id="board" style="text-align: center; border: 1px solid #dddddd">
@@ -50,17 +54,22 @@ if(request.getParameter("pageNum")!=null){
 			<%
 			if(pageNum!=1){
 			%>
-			<button onclick="location.href='board.jsp?pageNum=<%=pageNum-1%>'">이전</button>
+			<button id="prev" onclick="location.href='board.jsp?pageNum=<%=pageNum-1%>'">이전</button>
 			<%
 			}
 			if(boarddao.nextPage(pageNum+1)){
 			%>
-			<button onclick="location.href='board.jsp?pageNum=<%=pageNum+1%>'">다음</button>
+			<button id="next" onclick="location.href='board.jsp?pageNum=<%=pageNum+1%>'">다음</button>
 			<%
 			}
 			%>
-		<!-- 글쓰기 버튼 생성 -->
+			<%
+			if(id != null){
+			%>
 		<button id="write" onclick="location='write.jsp'">새글작성</button>
+		<%
+			}
+		%>
 	</div>
 </body>
 </html>
